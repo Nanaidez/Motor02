@@ -4,27 +4,50 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>Arbol de comportamiento en Unreal Engine</title>
-
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<style>
+    body{
+        text-align: center;
+    }
+    p{
+        text-align: justify;
+        width: 50%;
+        margin-left: 25%;
+    }
+    
+    .switch{
+    margin-left: 20%;
+    position: relative;
+    width: 2.8%;
+    height: 20 px;
+    border: 2px solid rgb(134, 145, 169);
+    display: flex;
+    border-radius: 35px;
+    }
+    .slider{
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        background-color: rgb(94, 156, 207);
+    }
+    .checkbox{
+        display: none;
+    }
+    input:checked + .slider{
+        translate: 20px;
+    }
+    
+</style>
 </head>
 <body>
-
-     <h1> Creacion de IA </h1>
-    <h2> Desarrollado por: Diana Aide Zarate Estrada</h2>
-    
-    <h2>Guía rápida de inicio del árbol de comportamiento</h2>
-    <p>En la Guía de Inicio Rápido del Árbol de Comportamiento, aprenderás a crear una IA enemiga que responda al ver al jugador y proceda a perseguirlo. Al perder de vista al Jugador, tras unos segundos (que se pueden ajustar según tu preferencia), la IA dejará de perseguirla y se moverá aleatoriamente por el entorno hasta volver a ver al Jugador, como se ve en el vídeo de ejemplo de abajo.</p>
-    <img src="./assets/ue5-hero.png.png"  class="img-fluid" alt="">
-
-
-
-
+    <label class="switch">
+            <input type="checkbox" class="checkbox">
+            <div class="slider"></div>
+    </label>
 
  <h1>Guía de inicio rápido del árbol de comportamiento</h1>
  <p>Esta guía muestra cómo utilizar árboles de comportamiento para configurar un personaje de IA que patrullará o perseguirá a un jugador.</p>
- <img src="./assets/ue5-hero.png.png" class="img-fluid" alt="" srcset="">
+ <img class="img-fluid" src="./assets/ue5-hero.png.png" alt="" srcset="">
  <p>En la Guía de inicio rápido del Árbol de comportamiento , aprenderás a crear una IA enemiga que reacciona al ver al jugador y comienza a perseguirlo. Al perder de vista al jugador, tras unos segundos (que puedes ajustar según tus preferencias), la IA dejará de perseguirlo y se moverá aleatoriamente por el entorno hasta volver a verlo, como se muestra en el siguiente video de ejemplo.</p>
  <p>(aqui va un video)</p>
  <p>Al final de esta guía, comprenderá los siguientes sistemas: </p>
@@ -41,27 +64,27 @@
  <p>En este primer paso, configuramos nuestro proyecto con los recursos que necesitaremos para que nuestro personaje de IA se desplace por el entorno. 
  <p>Para esta guía, utilizamos un nuevo proyecto de plantilla en tercera persona de Blueprint .</p>
  <p>Abra el cajón de contenido , luego haga clic derecho en la carpeta ThirdPerson y cree una nueva carpeta llamada AI .</p>
- <img src="./assets/1-create-folder.png" class="img-fluid" alt="">
+ <img class="img-fluid" src="./assets/1-create-folder.png" alt="">
  <p>En la carpeta ThirdPerson > Blueprints , arrastre BP_ThirdPersonCharacter a la carpeta AI y seleccione Copiar aquí .</p>
- <img src="./assets/2-copy-character.png" class="img-fluid" alt="" srcset="">
+ <img class="img-fluid" src="./assets/2-copy-character.png" alt="" srcset="">
  <p>En la carpeta AI , cree una nueva clase Blueprint basada en la clase AIController</p>
- <img src="./assets/3-create-ai-controller.png" class="img-fluid" alt="">
+ <img class="img-fluid" src="./assets/3-create-ai-controller.png" alt="">
  <p>Nombra el plano AIController Enemy_Controller  y el plano BP_ThirdPersonCharacter Enemy_Character .</p>
-<img src="./assets/4-rename-and-save.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/4-rename-and-save.png" alt="">
 <p>Abre  Enemy_Character y luego elimina todo el script del gráfico.</p>
 <p>Seleccione el  componente Movimiento del personaje y luego configure la Velocidad máxima de caminata en el panel Detalles en 120.0 .</p>
-<img src="./assets/5-walk-speed.png"  class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/5-walk-speed.png" alt="">
 <p>Haga clic en la imagen para verla completa.</p>
 <p>Esto reduce la velocidad del movimiento de nuestro personaje de IA por el entorno cuando patrulla y no persigue al jugador. </p>
 <p>Seleccione Valores predeterminados de clase en la barra de herramientas y luego, en el panel Detalles , asigne Enemy_Controller como la clase de controlador de IA .</p>
-<img src="./assets/6-ai-controller.png" class="img-fluid" alt="" sizes="" srcset="">
+<img class="img-fluid" src="./assets/6-ai-controller.png" alt="" sizes="" srcset="">
 <p>Haga clic en la imagen para verla completa.</p>
 <p>Vamos a colocar nuestra IA en el mundo. Si la generas después de que se cargue el mundo, cambia la configuración de Posesión automática de IA a Generada .</p>
 <p>Desde el cajón de contenido , arrastre el personaje enemigo al nivel. </p>
 <p>Desde el panel Actores de lugar , arrastre un NavMeshBoundsVolume al Nivel.</p>
-<img src="./assets/7-nav-mesh.png" class="img-fluid" alt="" srcset="">
+<img class="img-fluid" src="./assets/7-nav-mesh.png" alt="" srcset="">
 <p>Con NavMeshBoundsVolume seleccionado, presione R y escale el volumen para encapsular todo el nivel.</p>
-<img src="./assets/8-scale-nav-mesh.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/8-scale-nav-mesh.png" alt="">
 <p>Esto generará una malla de navegación que permitirá a nuestro personaje de IA moverse por el entorno. Puedes pulsar la  tecla P  para alternar la visualización de la malla de navegación en la ventana gráfica (las áreas verdes indican posibles ubicaciones de navegación).</p>
 <p>
 Durante el juego, puedes usar el comando de consola Mostrar navegación para activar o desactivar la visualización de NavMesh.</p>
@@ -70,18 +93,18 @@ Durante el juego, puedes usar el comando de consola Mostrar navegación para act
 <h2> Configuración de la pizarra</h2>
 <p>En este paso, creamos nuestro recurso Blackboard , que es básicamente el cerebro de nuestra IA. Todo lo que queramos que nuestra IA sepa tendrá una clave Blackboard a la que podremos hacer referencia. Crearemos claves para rastrear al jugador, independientemente de si la IA tiene línea de visión con él y una ubicación a la que la IA pueda moverse cuando no esté persiguiéndolo.</p>
 <p>En el Cajón de contenido , haga clic en +Agregar y, en Inteligencia artificial , seleccione Pizarra y llámelo BB_Enemy .</p>
-<img src="./assets/1-create-blackboard.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/1-create-blackboard.png" alt="">
 <p>Dentro de la pizarra BB_Enemy , haga clic en el botón Nueva clave y seleccione Objeto .</p>
-<img src="./assets/step-2-2.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/step-2-2.png" alt="">
 <p>El activo de Blackboard consta de dos paneles: Blackboard , que le permite agregar y realizar un seguimiento de sus claves de Blackboard (variables para monitorear), y Blackboard Details , que le permite nombrar y especificar el tipo de claves.</p>
 <p>Para la clave Objeto , ingrese EnemyActor como Nombre de entrada y Actor como Clase base .</p>
-<img src="./assets/step-2-3.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/step-2-3.png" alt="">
 <p>Agregue otra clave con el tipo de clave establecido en Bool llamada HasLineOfSight .</p>
-<img src="./assets/step-2-4.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/step-2-4.png" alt="">
 <p>Esto se utilizará para realizar un seguimiento de si la IA tiene o no una línea de visión hacia el jugador.</p>
 <p>Agregue otra clave , con el tipo de clave establecido en Vector , llamada PatrolLocation .</p>
-<img src="./assets/step-2-5.png" class="img-fluid" alt="">
-<img src="./assets/step-2-5 (1).png" class="img-fluid" alt="" srcset="">
+<img class="img-fluid" src="./assets/step-2-5.png" alt="">
+<img class="img-fluid" src="./assets/step-2-5 (1).png" alt="" srcset="">
 <p>checar el orden de las imagenes</p>
 <p>Esto se utilizará para realizar un seguimiento de una ubicación en el nivel donde la IA puede moverse cuando no está persiguiendo al jugador.</p>
 <p>Nuestra pizarra está configurada con los elementos que necesitamos registrar. En el siguiente paso, diseñaremos nuestro árbol de comportamiento .</p>
@@ -89,15 +112,15 @@ Durante el juego, puedes usar el comando de consola Mostrar navegación para act
 <h2>Diseño del árbol de comportamiento</h2>
 <p>En este paso, diseñaremos el flujo de nuestro Árbol de Comportamiento y los estados en los que queremos que nuestra IA entre. Al diseñar visualmente el Árbol de Comportamiento con los estados que anticipa que su IA podría presentar, tendrá una idea del tipo de lógica y reglas que necesitará crear para entrar en esos estados.</p>
 <p>En el Cajón de contenido , haga clic en +Agregar y, en Inteligencia artificial , seleccione Árbol de comportamiento y llámelo BT_Enemy .</p>
-<img src="./assets/create-behavior-tree.png" class="img-fluid"  alt="">
+<img class="img-fluid" src="./assets/create-behavior-tree.png" alt="">
 <p>
 Las convenciones de nomenclatura pueden variar, pero generalmente es una buena práctica agregar un acrónimo del tipo de activo al nombre.</p>
 <p>Abra BT_Enemy  y asigne BB_Enemy  como activo de Blackboard .</p>
-<img src="./assets/behavior-tree-quick-start-step-3-2-1.png" class="img-fluid"  alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-2-1.png" alt="">
 <p>Si no ve las claves de Blackboard que creamos, borre el activo de Blackboard  haciendo clic en la flecha amarilla y luego vuelva a asignar Enemy_BB para actualizar las claves.</p>
 <p>El Árbol de comportamiento consta de tres paneles: el gráfico del Árbol de comportamiento , donde se muestran visualmente las ramas y los nodos que definen los comportamientos, el panel Detalles , donde se pueden definir las propiedades de los nodos, y la Pizarra , que muestra las Teclas de la Pizarra  y sus valores actuales cuando el juego se está ejecutando y es útil para la depuración.</p>
 <p>En el gráfico, haga clic izquierdo y arrastre la raíz y agregue un nodo Selector .</p>
-<img src="./assets/behavior-tree-quick-start-step-3-3.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-3.png" alt="">
 <p>Los compuestos son una forma de control de flujo y determinan cómo se ejecutan las ramas secundarias que están conectadas a ellos.</p>
 <p>(generar una tabla)</p>
 <p>Compuestos</p>
@@ -109,46 +132,46 @@ Las convenciones de nomenclatura pueden variar, pero generalmente es una buena p
 <p>Paralelo simple</p>
 <p>	Simple Parallel tiene dos conexiones. La primera es la Tarea Principal, a la que solo se le puede asignar un nodo de Tarea (es decir, no se permiten Compuestos). La segunda conexión (la Rama de Fondo) es la actividad que debe ejecutarse mientras la Tarea principal sigue en ejecución. Dependiendo de las propiedades, Simple Parallel puede finalizar al mismo tiempo que la Tarea Principal o esperar a que también finalice la Rama de Fondo.</p>
 <p>Para el nodo Selector , en el panel Detalles , cambie el Nombre del nodo a AI Root . </p>
-<img src="./assets/behavior-tree-quick-start-step-3-4.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-4.png" alt="">
 <p>Renombrar los nodos en el gráfico es una buena manera de identificar fácilmente, a grandes rasgos, su función. En este ejemplo, lo llamamos AI Root  , ya que es la raíz real de nuestro árbol de comportamientos, que alternará entre nuestras ramas secundarias. El nodo raíz predeterminado, que se agrega automáticamente al crear un árbol de comportamientos, se utiliza para configurar las propiedades del árbol de comportamientos y asignar el recurso de Blackboard que utiliza. </p>
 <p>Haga clic izquierdo y arrastre AI Root y agregue un nodo  Secuencia llamado Chase Player .</p>
-<img src="./assets/behavior-tree-quick-start-step-3-5.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-5.png" alt="">
 <p>Aquí usamos un nodo de secuencia porque planeamos indicarle a la IA que realice una secuencia de acciones: girar hacia el jugador, cambiar su velocidad de movimiento y luego moverse y perseguir al jugador. </p>
 <p>Haga clic izquierdo y arrastre el nodo raíz de IA y agregue un nodo de secuencia llamado Patrulla .</p>
-<img src="./assets/behavior-tree-quick-start-step-3-6.png" class="img-fluid"  alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-6.png" alt="">
 <p>Haga clic en la imagen para verla completa.</p>
 <p>Para nuestra IA, utilizaremos el nodo Secuencia para encontrar una ubicación aleatoria en el mapa, movernos a esa ubicación y luego esperar allí un rato antes de repetir el proceso de encontrar una nueva ubicación a la cual movernos.</p>
 <p>También puedes observar los números en la esquina superior derecha de los nodos:</p>
- <img src="./assets/behavior-tree-quick-start-step-3-6b.png" class="img-fluid" alt="">
+ <img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-6b.png" alt="">
 <p>Esto indica el orden de operación.  Los árboles de comportamiento se ejecutan de izquierda a derecha y de arriba a abajo, por lo que la disposición de los nodos es importante. Las acciones más importantes para la IA suelen ubicarse a la izquierda, mientras que las menos importantes (o comportamientos de reserva) se ubican a la derecha. Las ramas secundarias se ejecutan de la misma manera y, si alguna rama secundaria falla, toda la rama dejará de ejecutarse y volverá a la rama superior del árbol. Por ejemplo, si Chase Player falla, regresará a la raíz de la IA antes de pasar a Patrol .</p> 
 <p>Arrastre  AI Root y luego agregue una  tarea de espera a la derecha de  Patrulla con  el tiempo de espera establecido en  1.0 . </p>
-<img src="./assets/behavior-tree-quick-start-step-3-7.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-7.png" alt="">
 <p>Haga clic en la imagen para verla completa.</p>
 <p>Observarás que este nodo es morado, lo que indica que es un  nodo de tarea . Los nodos de tarea son las acciones que deseas que realice  el Árbol de Comportamiento . La tarea de espera funciona como un recurso general si el  Árbol de Comportamiento falla tanto en la Persecución del Jugador como en la Patrulla. </p>
 <p>Arrastre el Chase Player y agregue un nodo Rotar a cara BBEntry .</p>
-<img src="./assets/behavior-tree-quick-start-step-3-8.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-8.png" alt="">
 <p>Haga clic en la imagen para verla completa.</p>
 <p>Esta tarea en particular permite designar una entrada de Blackboard que se desea rotar y orientar, en nuestro caso, el actor enemigo (jugador). Una vez agregado el nodo, si consulta el panel Detalles , la clave de Blackboard se establecerá automáticamente en EnemyActor, ya que filtra por la variable de Blackboard "Actor" y es la primera de la lista. Puede ajustar la opción "Precisión" si desea ajustar el rango de la condición de éxito, así como cambiar el nombre del nodo .</p>
 <p>Desde la barra de herramientas , haga clic en el botón Nueva tarea .</p>
-<img src="./assets/behavior-tree-quick-start-step-3-9.png"class="img-fluid"  alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-9.png" alt="">
 <p>Además de usar las tareas integradas, puedes crear y asignar tareas personalizadas con lógica adicional que puedes personalizar y definir. Esta tarea se usará para cambiar la velocidad de movimiento de la IA para que siga al jugador. Al crear una nueva tarea, se creará y abrirá automáticamente un nuevo plano .</p>
-<img src="./assets/behavior-tree-quick-start-step-3-9b.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-9b.png" alt="">
 <p>Haga clic en la imagen para verla completa.</p>
 <p>En el cajón de contenido , cambie el nombre del nuevo activo a BTT _ChasePlayer .</p>
-<img src="./assets/behavior-tree-quick-start-step-3-9b.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-9b.png" alt="">
 <p>Se recomienda renombrar inmediatamente cualquier tarea , decorador o servicio recién creado. Una convención de nomenclatura adecuada sería anteponer al nombre del activo el tipo de activo creado, como BTT para tareas del árbol de comportamiento, BTD para decoradores del árbol de comportamiento o BTS para servicios del árbol de comportamiento. </p>
 <p>Dentro de BT_Enemy , agregue la tarea BTT_ChasePlayer seguida de  Mover a</p>
-<img src="./assets/behavior-tree-quick-start-step-3-11.png" class="img-fluid"  alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-11.png" alt="">
 <p>Nuestra nueva tarea aún no tiene lógica, pero volveremos y agregaremos la lógica para cambiar la velocidad de movimiento de nuestro personaje de IA, después de lo cual, la IA se moverá al actor enemigo (jugador).</p>
 <p>Cree una nueva  tarea y cámbiele el nombre a  BTT_FindRandomPatrol , luego conéctela a  Patrol . </p>
-<img src="./assets/behavior-tree-quick-start-step-3-12.png" class="img-fluid"  alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-12.png" alt="">
 <p>Haga clic en la imagen para verla completa.</p>
 <p>Agregue una  tarea "Mover a  " y configure la  clave de Blackboard  en  PatrolLocation . </p>
-<img src="./assets/behavior-tree-quick-start-step-3-13.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-13.png" alt="">
 <p>Haga clic en la imagen para verla completa.</p>
 <p>Esto le indicará a la IA que se mueva a la ubicación de patrulla que se establecerá dentro de la tarea BTT_FindRandomPatrol. </p>
 <p>Agregue una  tarea  de espera  después de Mover a con  tiempo de espera  en  4.0  y  desviación aleatoria  en  1.0 . </p>
-<img src="./assets/behavior-tree-quick-start-step-3-14.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-3-14.png" alt="">
 <p>Haga clic en la imagen para verla completa.</p>
 <p>Esto le indica a la IA que espere en PatrolLocation durante 3 a 5 segundos (la desviación aleatoria agrega + o - un segundo al tiempo de espera). </p>
 <p>El marco de nuestro Árbol de Comportamiento está completo. En el siguiente paso, añadiremos la lógica para cambiar la velocidad de movimiento de la IA, encontrar una ubicación aleatoria a la que navegar cuando la IA esté patrullando y la lógica para determinar cuándo la IA debería perseguir al jugador o patrullar.</p>
@@ -156,29 +179,41 @@ Las convenciones de nomenclatura pueden variar, pero generalmente es una buena p
 <h2>4 - Configuración de la tarea - Chase Player</h2>
 <p>En este paso, configuramos nuestra tarea de perseguir al jugador  para cambiar la velocidad de movimiento al perseguir al jugador.</p>
 <p>Dentro de BTT_ChasePlayer , haga clic derecho y agregue un   nodo  AI de recepción y ejecución de evento .</p>
-<img src="./assets/behavior-tree-quick-start-step-4-1.png" class="img-fluid"  alt="">
+<img class="img-fluid" src="./assets/behavior-tree-quick-start-step-4-1.png" alt="">
 <p>El nodo AI de recepción y ejecución de eventos se activa cuando esta tarea se activa dentro del  árbol de comportamiento . </p>
 <p>Siempre debe seleccionar la versión de IA de Event Receive Execute , Event Receive Abort y Event Receive Tick  si el agente es un controlador de IA. Si se implementan tanto la versión genérica como la de IA, solo se llamará la más adecuada; es decir, se llamará la versión de IA para IA y la genérica para los demás.</p>
 <p>Desde el pin Peón controlado  , utiliza un nodo Lanzar a personaje enemigo  .</p>
-<img src="./assets/2-event-receive-ai.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/2-event-receive-ai.png" alt="">
 <p>Aquí, accedemos al plano del personaje para nuestra IA llamado Enemy_Character mediante un nodo Cast.</p>
 <p>Dentro del  cajón de contenido , abra el  plano Enemy_Character  y agregue una función llamada  Actualizar velocidad de caminata . </p>
-<img src="./assets/behavior-tree-add-new-function.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/behavior-tree-add-new-function.png" alt="">
 <p>Esta función se llamará desde nuestro árbol de comportamiento y se utilizará para cambiar la velocidad de movimiento de la IA. </p>
 <p>Técnicamente, podríamos acceder al  componente de movimiento del personaje  desde el nodo "Lanzar" en nuestra tarea "Perseguir jugador" y ajustar la velocidad de movimiento desde la tarea. Sin embargo, no se recomienda que el árbol de comportamiento modifique directamente las propiedades de los subobjetos. En su lugar, el árbol de comportamiento llamará a una función dentro del personaje que realizará las modificaciones necesarias.</p>
 <p>En el  panel Detalles  de la  función Actualizar velocidad de caminata  , agregue una  entrada Flotante  llamada  NewWalkSpeed. </p>
-<img src="./assets/behavior-tree-new-walk-speed.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/behavior-tree-new-walk-speed.png" alt="">
 <p>Arrastre el  componente CharacterMovement fuera de la pestaña Componentes</p>
-<img src="./assets/behavior-tree-function-1.png" class="img-fluid" alt="">
+<img class="img-fluid" src="./assets/behavior-tree-function-1.png" alt="">
 <p>Haga clic y arrastre el pin de Movimiento del personaje y desde el menú de acciones escriba Establecer velocidad máxima de caminata , luego haga clic en Establecer velocidad máxima de caminata en el menú. </p>
-<img src="./assets/behavior-tree-function-2.png"class="img-fluid"  alt="">
+<img class="img-fluid" src="./assets/behavior-tree-function-2.png" alt="">
 <p>Utilice Establecer velocidad máxima de caminata y conéctelo como se muestra a continuación. </p>
-<img src="./assets/behavior-tree-function-complete.png" class="img-fluid" alt="">
+<img src="./assets/behavior-tree-function-complete.png" alt="">
 <p></p>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
+<script>
+    let chbox = document.querySelector('.checkbox');
+    let body = document.body;
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    chbox.addEventListener('change', function(){
 
+        if (this.checked){
+            body.setAttribute('style','background-color:black;color: white');
+        } else{
+            body.setAttribute('style','background-color:white;color: black');
+        }
+    });
+
+</script>
 
 </body>
 </html>
